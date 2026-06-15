@@ -1,9 +1,11 @@
-#ramdir
+# ramdir
 
-###requierments
+### requierments
+
  -Linux
  -Python3.6 or higher
  -bash
 
-###tested
+### tested
+
  -Arch Linux
