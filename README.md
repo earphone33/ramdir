@@ -2,10 +2,10 @@
 
 ### requierments
 
- -Linux
- -Python3.6 or higher
- -bash
+ - Linux
+ - Python3.6 or higher
+ - bash
 
 ### tested
 
- -Arch Linux
+ - Arch Linux
