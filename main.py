@@ -4,8 +4,8 @@ import subprocess
 import os
 
 def askYesNo(text):
-    in = input(text, "[y/n]")
-    if in.upper() == "y":
+    putt = input(text, "[y/n]")
+    if putt.upper() == "y":
         return True
     return False
 
