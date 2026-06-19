@@ -4,8 +4,8 @@ import subprocess
 import os
 
 def askYesNo(text):
-    putt = input(text, "[y/n]")
-    if putt.upper() == "y":
+    putt = input(text+" [y/n] ")
+    if putt.upper() == "Y":
         return True
     return False
 
@@ -23,14 +23,15 @@ dirToRam = input("enter a directory to save to ram (be careful!): ")
 mountpoint = input("enter a mountpoint to mount to ramdir to: ")
 
 try:
-    os.scandir(mountpoint) != "":
+    if os.scandir(mountpoint) != "":
         if askYesNo("directory "+mountpoint+" not empty! Remove contents?") :
             print("==> removing "+mountpoint)
             os.system("rm -r "+mountpoint)
         else:
             print("!Not possible to proseed! esiting!")
 except FileNotFoundError:
-    if askYesNo("Directory "+mountpoint+" not found, create it?")
+    print("Directory "+mountpoint+" not found")
+    if askYesNo("create it?"):
         print("==> Creating directory "+mountpoint)
         os.system("mkdir -p "+mountpoint)
 
@@ -46,6 +47,7 @@ print("requiered RAM to proceed:", sizeToCopy)
 os.system("./makerampart.bash "+sizeToCopy+" "+mountpoint)
 print("creating RAM partition")
 
-print("==> Copying contents of "+dirToRam+" to /tmp/ramdir")
-os.system("sudo cp -r "+dirToRam+" /tmp/ramdir")
+print("==> Copying contents of "+dirToRam+" to "+mountpoint)
+os.system("sudo cp -r "+dirToRam+" "+mountpoint)
 print("Done!")
+
