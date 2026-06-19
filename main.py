@@ -22,12 +22,17 @@ else:
 dirToRam = input("enter a directory to save to ram (be careful!): ")
 mountpoint = input("enter a mountpoint to mount to ramdir to: ")
 
-if os.scandir(mountpoint) != "":
-    if askYesNo("directory "+mountpoint+" not empty! Remove contents?") :
-        print("removing "+mountpoint)
-        os.system("rm -r "+mountpoint)
-    else:
-        print("!Not possible to proseed! esiting!")
+try:
+    os.scandir(mountpoint) != "":
+        if askYesNo("directory "+mountpoint+" not empty! Remove contents?") :
+            print("==> removing "+mountpoint)
+            os.system("rm -r "+mountpoint)
+        else:
+            print("!Not possible to proseed! esiting!")
+except FileNotFoundError:
+    if askYesNo("Directory "+mountpoint+" not found, create it?")
+        print("==> Creating directory "+mountpoint)
+        os.system("mkdir -p "+mountpoint)
 
 if os.path.isdir(dirToRam):
     print("Directory "+dirToRam+" is real")
